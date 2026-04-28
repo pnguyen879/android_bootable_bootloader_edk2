@@ -94,8 +94,9 @@
   GCC:*_*_*_ARCHCC_FLAGS  = -Wno-shift-negative-value -fstack-protector-all -Wno-varargs -fno-common -Wno-misleading-indentation -Wno-unknown-warning-option
   GCC:*_*_*_DLINK_FLAGS = -Ttext=0x0
   GCC:*_*_*_CC_FLAGS = -DZ_SOLO
-  GCC:*_*_*_CC_FLAGS = -DPRODUCT_NAME=\"$(BOARD_BOOTLOADER_PRODUCT_NAME)\"
+  GCC:*_*_*_CC_FLAGS = -DPRODUCT_DEVICE=\"$(BOARD_BOOTLOADER_PRODUCT_DEVICE)\"
   GCC:*_*_*_CC_FLAGS = -DPRODUCT_MODEL=\"$(BOARD_BOOTLOADER_PRODUCT_MODEL)\"
+  GCC:*_*_*_CC_FLAGS = -DPRODUCT_NAME=\"$(BOARD_BOOTLOADER_PRODUCT_NAME)\"
   GCC:*_*_*_CC_FLAGS = -DPRODUCT_BOOTLOADER_VERSION=\"$(BOARD_BOOTLOADER_VERSION)\"
 
   !if $(VERIFIED_BOOT)

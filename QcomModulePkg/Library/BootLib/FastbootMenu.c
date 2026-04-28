@@ -110,16 +110,17 @@ STATIC MENU_MSG_INFO mFastbootOptionTitle[] = {
 #define FASTBOOT_MSG_INDEX_FASTBOOT                1
 #define FASTBOOT_MSG_INDEX_CURRENT_SLOT            2
 #define FASTBOOT_MSG_INDEX_PRODUCT_NAME            3
-#define FASTBOOT_MSG_INDEX_PRODUCT_MODEL           4
-#define FASTBOOT_MSG_INDEX_VARIANT                 5
-#define FASTBOOT_MSG_INDEX_BOOTLOADER_VERSION      6
-#define FASTBOOT_MSG_INDEX_BASEBAND_VERSION        7
-#define FASTBOOT_MSG_INDEX_SERIAL_NUMBER           8
-#define FASTBOOT_MSG_INDEX_HARDWARE_REVISION       9
-#define FASTBOOT_MSG_INDEX_SECURE_BOOT            10
-#define FASTBOOT_MSG_INDEX_DEVICE_STATE_UNLOCKED  11
-#define FASTBOOT_MSG_INDEX_DEVICE_STATE_LOCKED    12
-#define FASTBOOT_MSG_INDEX_MAINLINE               13
+#define FASTBOOT_MSG_INDEX_PRODUCT_DEVICE          4
+#define FASTBOOT_MSG_INDEX_PRODUCT_MODEL           5
+#define FASTBOOT_MSG_INDEX_VARIANT                 6
+#define FASTBOOT_MSG_INDEX_BOOTLOADER_VERSION      7
+#define FASTBOOT_MSG_INDEX_BASEBAND_VERSION        8
+#define FASTBOOT_MSG_INDEX_SERIAL_NUMBER           9
+#define FASTBOOT_MSG_INDEX_HARDWARE_REVISION      10
+#define FASTBOOT_MSG_INDEX_SECURE_BOOT            11
+#define FASTBOOT_MSG_INDEX_DEVICE_STATE_UNLOCKED  12
+#define FASTBOOT_MSG_INDEX_DEVICE_STATE_LOCKED    13
+#define FASTBOOT_MSG_INDEX_MAINLINE               14
 
 STATIC MENU_MSG_INFO mFastbootCommonMsgInfo[] = {
     {{"\nPress volume key to select, "
@@ -145,6 +146,13 @@ STATIC MENU_MSG_INFO mFastbootCommonMsgInfo[] = {
      0,
      NOACTION},
     {{"\nPRODUCT_NAME - "},
+     COMMON_FACTOR,
+     BGR_WHITE,
+     BGR_BLACK,
+     COMMON,
+     0,
+     NOACTION},
+    {{"PRODUCT_DEVICE - "},
      COMMON_FACTOR,
      BGR_WHITE,
      BGR_BLACK,
@@ -344,6 +352,12 @@ FastbootMenuShowScreen (OPTION_MENU_INFO *OptionMenuInfo)
       AsciiStrnCatS (mFastbootCommonMsgInfo[i].Msg,
         sizeof (mFastbootCommonMsgInfo[i].Msg), PRODUCT_NAME,
         AsciiStrLen (PRODUCT_NAME));
+      break;
+    case FASTBOOT_MSG_INDEX_PRODUCT_DEVICE:
+      /* Get product device */
+      AsciiStrnCatS (mFastbootCommonMsgInfo[i].Msg,
+        sizeof (mFastbootCommonMsgInfo[i].Msg), PRODUCT_DEVICE,
+        AsciiStrLen (PRODUCT_DEVICE));
       break;
     case FASTBOOT_MSG_INDEX_PRODUCT_MODEL:
       /* Get product model */
