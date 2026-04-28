@@ -148,6 +148,8 @@ CheckVirtualAbCriticalPartition (CHAR16 *PartitionName);
 STATIC FASTBOOT_VAR *Varlist;
 STATIC BOOLEAN Finished = FALSE;
 STATIC CHAR8 StrSerialNum[MAX_RSP_SIZE];
+STATIC CHAR8 FullDevice[MAX_RSP_SIZE];
+STATIC CHAR8 FullModel[MAX_RSP_SIZE];
 STATIC CHAR8 FullProduct[MAX_RSP_SIZE];
 STATIC CHAR8 StrVariant[MAX_RSP_SIZE];
 STATIC CHAR8 StrBatteryVoltage[MAX_RSP_SIZE];
@@ -3899,6 +3901,10 @@ FastbootCommandSetup (IN VOID *Base, IN UINT64 Size)
     FastbootPublishVar ("snapshot-update-status", SnapshotMergeState);
   }
 
+  AsciiSPrint (FullDevice, sizeof (FullDevice), "%a", PRODUCT_DEVICE);
+  FastbootPublishVar ("device", FullDevice);
+  AsciiSPrint (FullModel, sizeof (FullModel), "%a", PRODUCT_MODEL);
+  FastbootPublishVar ("model", FullModel);
   AsciiSPrint (FullProduct, sizeof (FullProduct), "%a", PRODUCT_NAME);
   FastbootPublishVar ("product", FullProduct);
   FastbootPublishVar ("serialno", StrSerialNum);
